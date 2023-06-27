@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Travel;
+use App\Observers\TravleObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -19,7 +21,14 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
     ];
-
+    /**
+     * The model observers for your application.
+     *
+     * @var array
+     */
+    protected $observers = [
+        Travel::class => [TravleObserver::class],
+    ];
     /**
      * Register any events for your application.
      */
